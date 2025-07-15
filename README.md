@@ -130,21 +130,10 @@ const { VoiceConnection, AudioPlayer } = require('ryuziii.js');
 
 ## Contributors
 
-<div align="center">
-  <a href="https://github.com/ryuzii">
-    <img src="https://avatars.githubusercontent.com/u/00000000?v=4" width="64" height="64" alt="Ryuzii" style="border-radius:50%"/>
-    <br />
-    <sub><b>Ryuzii</b></sub>
-  </a>
-  &nbsp;
-  <a href="https://github.com/other-contributor">
-    <img src="https://avatars.githubusercontent.com/u/00000001?v=4" width="64" height="64" alt="Other Contributor" style="border-radius:50%"/>
-    <br />
-    <sub><b>Other Contributor</b></sub>
-  </a>
-</div>
+| [<img src="https://github.com/ryuzii.png" width="64" height="64" alt="Ryuzii"/><br>**Ryuzii**](https://github.com/ryuzii) | [<img src="https://github.com/octocat.png" width="64" height="64" alt="Other Contributor"/><br>**Other Contributor**](https://github.com/octocat) |
+|:---:|:---:|
 
-Want to help? <a href="https://github.com/ryuzii/ryuziii.js/issues">Open an issue or PR!</a>
+Want to help? [Open an issue or PR!](https://github.com/ryuzii/ryuziii.js/issues)
 
 ---
 
