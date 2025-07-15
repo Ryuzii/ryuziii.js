@@ -147,7 +147,7 @@ We welcome contributions! Please:
 ---
 
 ## License
-MIT
+[MIT License →](https://github.com/ryuzii/ryuziii.js/blob/main/LICENSE)
 
 ---
 
