@@ -1,0 +1,42 @@
+{
+  "name": "ryuziii.js",
+  "version": "0.1.0-beta",
+  "description": "A high-performance, minimal, and advanced Discord API wrapper for JavaScript. Modern, modular, and ready for advanced bots.",
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
+  "files": [
+    "src/",
+    "README.md"
+  ],
+  "keywords": [
+    "discord", "api", "wrapper", "bot", "sharding", "voice", "slash", "music", "discord bot", "discord.js alternative", "gateway", "rest", "lavalink", "events", "commands", "typescript", "minimal", "performance", "advanced", "cache", "modular"
+  ],
+  "author": "Ryuzii <ryuzii@github.com>",
+  "contributors": [
+    {
+      "name": "Ryuzii",
+      "email": "yurii061204@gmail.com",
+      "url": "https://github.com/ryuzii"
+    },
+    {
+      "name": "Your Name Here",
+      "email": "",
+      "url": ""
+    }
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ryuzii/ryuziii.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ryuzii/ryuziii.js/issues"
+  },
+  "homepage": "https://github.com/ryuzii/ryuziii.js#readme",
+  "dependencies": {
+    "node-fetch": "2.6.7",
+    "@discordjs/voice": "^0.18.0",
+    "prism-media": "^1.3.5",
+    "ws": "^8.18.3"
+  }
+} 
