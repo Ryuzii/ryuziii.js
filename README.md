@@ -8,7 +8,7 @@
     <a href="https://github.com/ryuzii/ryuziii.js"><img src="https://img.shields.io/github/stars/ryuzii/ryuziii.js?style=flat-square" alt="GitHub stars"></a>
     <a href="https://github.com/ryuzii/ryuziii.js/blob/main/LICENSE"><img src="https://img.shields.io/github/license/ryuzii/ryuziii.js?style=flat-square" alt="MIT License"></a>
     <a href="https://discord.com/developers/docs/intro"><img src="https://img.shields.io/badge/discord-api-7289da?style=flat-square&logo=discord" alt="Discord API"></a>
-    <a href="https://img.shields.io/npm/dm/ryuziii.js?style=flat-square"><img src="https://img.shields.io/npm/dm/ryuziii.js?style=flat-square" alt="npm downloads"></a>
+    <a href="https://www.npmjs.com/package/ryuziii.js"><img src="https://img.shields.io/npm/dm/ryuziii.js?style=flat-square" alt="npm downloads"></a>
     <a href="https://github.com/ryuzii/ryuziii.js/commits/main"><img src="https://img.shields.io/github/last-commit/ryuzii/ryuziii.js?style=flat-square" alt="last commit"></a>
   </p>
 
@@ -16,7 +16,7 @@
     <a href="#documentation"><b>Documentation ✨</b></a> •
     <a href="https://github.com/ryuzii/ryuziii.js"><b>Source code 🖋️</b></a> •
     <a href="#usage"><b>Examples 🛠️</b></a> •
-    <a href="https://discord.gg/your-community-link"><b>Community 💬</b></a>
+    <a href="https://discord.gg/k3EJ5Et9"><b>Community 💬</b></a>
   </p>
 </div>
 
