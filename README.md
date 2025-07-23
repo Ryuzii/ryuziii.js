@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/logo.png" alt="ryuziii.js logo" width="400">
+  <img src="assets/image.png" alt="ryuziii.js logo" width="400">
 </div>
 
 ---
