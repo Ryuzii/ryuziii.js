@@ -1,6 +1,5 @@
 <div align="center">
-  <img src="assets/image.png" alt="ryuziii.js logo" width="400">
-</div>
+  <img src="https://media.discordapp.net/attachments/1396388363916804187/1397430831747825714/image-removebg-preview.png?ex=6881b261&is=688060e1&hm=23215bb63fce57d98902b1e5604a4d57af21aa61f76d077e87fdd918ddf050b7&=&format=webp&quality=lossless&width=857&height=159" alt="ryuziii.js logo" width="400"/>
 
 ---
 
