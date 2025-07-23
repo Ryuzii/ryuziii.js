@@ -1,18 +1,36 @@
-// ryuziii.js main entry point
+const Client = require('./Client');
+const Shard = require('./sharding/Shard');
+const ShardManager = require('./sharding/ShardManager');
+const VoiceConnection = require('./voice/VoiceConnection');
+const Collection = require('./utils/Collection');
+const Constants = require('./utils/Constants');
+const EmbedBuilder = require('./builders/EmbedBuilder');
+const MessageBuilder = require('./builders/MessageBuilder');
+const SlashCommandBuilder = require('./builders/SlashCommandBuilder');
+const ButtonBuilder = require('./builders/ButtonBuilder');
+const ActionRowBuilder = require('./builders/ActionRowBuilder');
+const { SelectMenuBuilder, SelectMenuOptionBuilder } = require('./builders/SelectMenuBuilder');
+const { ModalBuilder, TextInputBuilder } = require('./builders/ModalBuilder');
+const { InteractionManager } = require('./managers/InteractionManager');
+const Message = require('./structures/Message');
 
-const RyuziiClient = require('./client');
-const { Intents, resolveIntents } = require('./core/intents');
-const { SlashCommandBuilder } = require('./core/slashBuilder');
-const { loadSlashCommands } = require('./core/utils');
-
-module.exports = Object.assign(RyuziiClient, {
-  Client: RyuziiClient,
-  Intents,
-  resolveIntents,
+module.exports = {
+  Client,
+  Shard,
+  ShardManager,
+  VoiceConnection,
+  Collection,
+  Constants,
+  EmbedBuilder,
+  MessageBuilder,
   SlashCommandBuilder,
-  loadSlashCommands,
-  ...require('./core'),
-  ...require('./sharding'),
-  ...require('./voice'),
-  ...require('./cache')
-}); 
+  ButtonBuilder,
+  ActionRowBuilder,
+  SelectMenuBuilder,
+  SelectMenuOptionBuilder,
+  ModalBuilder,
+  TextInputBuilder,
+  InteractionManager,
+  Message,
+  version: require('../package.json').version
+};

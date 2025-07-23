@@ -1,30 +1,50 @@
 {
   "name": "ryuziii.js",
-  "version": "0.1.0-beta",
-  "description": "A high-performance, minimal, and advanced Discord API wrapper for JavaScript. Modern, modular, and ready for advanced bots.",
+  "version": "1.0.0",
+  "description": "High-performance Discord API library optimized for music bots and advanced applications",
   "main": "src/index.js",
-  "types": "src/index.d.ts",
+  "types": "types/index.d.ts",
   "files": [
-    "src/",
-    "README.md"
+    "src",
+    "types",
+    "README.md",
+    "LICENSE",
+    "package.json",
+    "package-lock.json"
   ],
+  "scripts": {
+    "start": "node examples/basic.js",
+    "start:advanced": "node examples/advanced-bot.js",
+    "start:music": "node examples/music-bot.js",
+    "start:discord-js": "node examples/discord-js-like.js",
+    "start:sharding": "node examples/sharding.js",
+    "test": "node test/test.js"
+  },
   "keywords": [
-    "discord", "api", "wrapper", "bot", "sharding", "voice", "slash", "music", "discord bot", "discord.js alternative", "gateway", "rest", "lavalink", "events", "commands", "typescript", "minimal", "performance", "advanced", "cache", "modular"
+    "discord",
+    "api",
+    "bot",
+    "music",
+    "high-performance",
+    "sharding",
+    "voice",
+    "websocket"
   ],
-  "author": "Ryuzii <ryuzii@github.com>",
-  "contributors": [
-    {
-      "name": "Ryuzii",
-      "email": "yurii061204@gmail.com",
-      "url": "https://github.com/ryuzii"
-    },
-    {
-      "name": "Your Name Here",
-      "email": "",
-      "url": ""
-    }
-  ],
+  "author": "Ryuziii Team",
   "license": "MIT",
+  "dependencies": {
+    "ws": "^8.14.2",
+    "node-fetch": "^2.7.0",
+    "sodium-native": "^4.0.4",
+    "tweetnacl": "^1.0.3"
+  },
+  "optionalDependencies": {
+    "erlpack": "^0.1.4",
+    "zlib-sync": "^0.1.9"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ryuzii/ryuziii.js.git"
@@ -32,11 +52,5 @@
   "bugs": {
     "url": "https://github.com/ryuzii/ryuziii.js/issues"
   },
-  "homepage": "https://github.com/ryuzii/ryuziii.js#readme",
-  "dependencies": {
-    "node-fetch": "2.6.7",
-    "@discordjs/voice": "^0.18.0",
-    "prism-media": "^1.3.5",
-    "ws": "^8.18.3"
-  }
-} 
+  "homepage": "https://github.com/ryuzii/ryuziii.js#readme"
+}
