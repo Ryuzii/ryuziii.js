@@ -155,24 +155,50 @@ require('fs').readdirSync('./commands').forEach(file => {
 
 #### Register Slash Commands (Global or Per-Guild)
 ```js
-const commands = ryuziii.loadSlashCommands('./slash');
-// Global
-await client.slash.setGlobal(commands);
-// Per-guild
-await client.slash.set(commands, 'YOUR_GUILD_ID');
+const { SlashCommandBuilder } = require('ryuziii.js');
+
+// Create your command
+const pingCommand = new SlashCommandBuilder()
+  .setName('ping')
+  .setDescription('Check bot latency');
+
+// Register globally (available in all servers, takes up to 1 hour)
+await client.createSlashCommand(null, pingCommand);
+
+// OR register for specific guild only (instant, for testing)
+await client.createSlashCommand('YOUR_GUILD_ID', pingCommand);
+
+// Handle the command
+client.interactions.addSlashCommand('ping', async (interaction) => {
+  await interaction.reply('🏓 Pong!');
+});
 ```
 
 #### Built-in Client Methods
 ```js
-// Easy messaging
+// Easy messaging - Choose your style!
+
+// Direct approach
 await client.sendMessage(channelId, 'Hello!');
 await client.editMessage(channelId, messageId, 'Updated!');
 await client.deleteMessage(channelId, messageId);
+
+// Discord.js-like approach
+await message.channel.send('Hello!');
+await message.reply('Hello!');
+await message.edit('Updated!');
+await message.delete();
+await message.react('👍');
 
 // Status management  
 client.setPlaying('music');
 client.setListening('commands');
 client.setWatching('for errors');
+client.setDND(); // or setOnline(), setIdle(), setInvisible()
+
+// Voice channels
+await client.joinVoiceChannel(guildId, channelId);
+await client.leaveVoiceChannel(guildId);
 
 // Moderation
 await client.kickMember(guildId, userId, 'Breaking rules');
