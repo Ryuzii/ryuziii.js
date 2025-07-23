@@ -285,7 +285,7 @@ client.on('error', (error) => {
 });
 
 // Login
-const token = "MTM5NjU2MDA2MTEwNjc1MzYzOA.Gejr4d.pv26Nel_7PfWIMGZdHPf2V9c3frRJ4jMSGW6M4";
+const token = "TOKEN";
 if (!token) {
   console.error('❌ No Discord token provided. Set DISCORD_TOKEN environment variable.');
   process.exit(1);
