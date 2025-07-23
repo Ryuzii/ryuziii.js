@@ -20,7 +20,7 @@
   </p>
 </div>
 
-A high-performance, minimal, and advanced Discord API wrapper for JavaScript, designed for simplicity, low resource usage, and advanced features like sharding, voice, and slash commands. Built for both beginners and advanced bot developers who want full control and modern ergonomics.
+A high-performance, **developer-friendly** Discord API wrapper for JavaScript with built-in builders, convenient methods, and advanced features. No more `client.rest.request()` - just clean, simple code that actually makes sense! Perfect for music bots and large-scale applications.
 
 ---
 
@@ -38,13 +38,14 @@ A high-performance, minimal, and advanced Discord API wrapper for JavaScript, de
 ---
 
 ## Features
-- ⚡ **Fast & Lightweight:** Minimal memory and CPU usage, perfect for heavy-load and large bots.
-- 🧩 **Modular:** Use only what you need—core, sharding, voice, cache, and more.
-- 🛠️ **Modern API:** Familiar Client, message, and interaction helpers (like discord.js).
-- 🎤 **Voice & Music Ready:** Built-in voice helpers, compatible with music nodes (Lavalink, etc.).
-- 🗂️ **Slash Commands:** Builder-style API and easy registration, just like discord.js.
-- 🧠 **Custom Caching:** Plug in your own cache or use the built-in one with TTL and size limits.
-- 🦾 **Advanced:** Sharding, REST helpers, event folders, command folders, and more.
+- 🎯 **Developer Friendly:** `client.sendMessage()` instead of `client.rest.request()` - finally!
+- 🏗️ **Built-in Builders:** EmbedBuilder, SlashCommandBuilder, MessageBuilder included
+- ⚡ **Fast & Lightweight:** Minimal memory and CPU usage, perfect for heavy-load and large bots
+- 🎵 **Music Bot Ready:** Full voice connection support with Opus streaming
+- 📡 **Auto Sharding:** Built-in sharding for bots in 1000+ servers  
+- 🎨 **Rich Features:** Color names (`'success'`, `'error'`), preset embeds, easy interactions
+- 💾 **Smart Caching:** LRU cache with automatic memory management and cleanup
+- 🔧 **TypeScript Ready:** Full TypeScript definitions included
 
 ---
 
@@ -56,18 +57,54 @@ npm install ryuziii.js
 ---
 
 ## Quick Start
+
+### The Old Way vs ryuziii.js Way ✨
+
+**Other libraries** 😭:
 ```js
-const ryuziii = require('ryuziii.js');
-const client = new ryuziii.Client({
-  token: 'YOUR_BOT_TOKEN',
-  intents: ['GUILDS', 'GUILD_MESSAGES', 'MESSAGE_CONTENT']
+// The hard way
+await client.rest.request('POST', `/channels/${id}/messages`, {
+  embeds: [{ title: 'Hello', color: 0x00ff00, timestamp: new Date().toISOString() }]
+});
+```
+
+**ryuziii.js** 😍:
+```js
+// Clean, simple, beautiful!
+const embed = new EmbedBuilder()
+  .setTitle('Hello')
+  .setColor('success')
+  .setTimestamp();
+
+await client.sendMessage(id, { embeds: [embed] });
+```
+
+### Basic Bot
+
+```js
+const { Client, Constants, EmbedBuilder } = require('ryuziii.js');
+
+const client = new Client({
+  intents: Constants.INTENTS.GUILDS | Constants.INTENTS.GUILD_MESSAGES | Constants.INTENTS.MESSAGE_CONTENT
 });
 
-client.on('ready', () => console.log('Bot is ready!'));
-client.on('messageCreate', msg => {
-  if (msg.content === '!ping') msg.reply('Pong!');
+client.on('ready', () => {
+  console.log('Bot is ready!');
+  client.setPlaying('with ryuziii.js'); // Easy status!
 });
-client.login();
+
+client.on('messageCreate', async (message) => {
+  if (message.content === '!ping') {
+    const embed = new EmbedBuilder()
+      .setTitle('🏓 Pong!')
+      .setColor('success')
+      .addField('Latency', `${client.ping}ms`, true);
+    
+    await client.sendMessage(message.channel_id, { embeds: [embed] });
+  }
+});
+
+client.login('YOUR_BOT_TOKEN');
 ```
 
 ---
@@ -76,13 +113,22 @@ client.login();
 
 ### Slash Command Example
 ```js
-const { SlashCommandBuilder } = require('ryuziii.js');
-module.exports = {
-  data: new SlashCommandBuilder().setName('ping').setDescription('Replies with Pong!'),
-  async execute(client, interaction) {
-    await interaction.reply('Pong!');
-  }
-};
+const { SlashCommandBuilder, EmbedBuilder } = require('ryuziii.js');
+
+// Register command
+const pingCommand = new SlashCommandBuilder()
+  .setName('ping')
+  .setDescription('Check bot latency');
+
+// Handle interaction
+client.interactions.addSlashCommand('ping', async (interaction) => {
+  const embed = new EmbedBuilder()
+    .setTitle('🏓 Pong!')
+    .addField('Latency', `${client.ping}ms`, true)
+    .setColor('success');
+  
+  await interaction.reply({ embeds: [embed] });
+});
 ```
 
 ### Advanced Usage
@@ -115,17 +161,43 @@ await client.slash.setGlobal(commands);
 await client.slash.set(commands, 'YOUR_GUILD_ID');
 ```
 
+#### Built-in Client Methods
+```js
+// Easy messaging
+await client.sendMessage(channelId, 'Hello!');
+await client.editMessage(channelId, messageId, 'Updated!');
+await client.deleteMessage(channelId, messageId);
+
+// Status management  
+client.setPlaying('music');
+client.setListening('commands');
+client.setWatching('for errors');
+
+// Moderation
+await client.kickMember(guildId, userId, 'Breaking rules');
+await client.banMember(guildId, userId, { reason: 'Spam' });
+```
+
 #### Sharding Example
 ```js
-const { ShardingManager } = require('ryuziii.js');
-const manager = new ShardingManager('YOUR_BOT_TOKEN', { shardCount: 2 });
+const { ShardManager } = require('ryuziii.js');
+const manager = new ShardManager('./bot.js', { 
+  totalShards: 'auto',
+  token: 'YOUR_BOT_TOKEN'
+});
 manager.spawn();
 ```
 
-#### Voice Example
+#### Voice/Music Example
 ```js
-const { VoiceConnection, AudioPlayer } = require('ryuziii.js');
-// See docs/examples for full voice/music bot usage
+const { VoiceConnection } = require('ryuziii.js');
+
+// Join voice channel
+await client.joinVoiceChannel(guildId, channelId);
+
+// Create voice connection
+const voiceConnection = new VoiceConnection(client, guildId, channelId);
+voiceConnection.playOpusStream(audioStream);
 ```
 
 ---
@@ -134,29 +206,32 @@ const { VoiceConnection, AudioPlayer } = require('ryuziii.js');
 
 A full-featured example bot is included in the [`examples/`](./examples) folder!
 
-### Basic Example
+### EmbedBuilder Example
 
 ```js
-const ryuziii = require('ryuziii.js');
-const client = new ryuziii.Client({
-  token: 'YOUR_BOT_TOKEN',
-  intents: ['GUILDS', 'GUILD_MESSAGES', 'MESSAGE_CONTENT']
-});
+const { EmbedBuilder } = require('ryuziii.js');
 
-client.on('ready', () => console.log('Bot is ready!'));
-client.on('messageCreate', msg => {
-  if (msg.content === '!ping') msg.reply('Pong!');
-});
-client.login();
+// Beautiful embeds with color names!
+const embed = new EmbedBuilder()
+  .setTitle('✨ Success!')
+  .setDescription('This is so much easier!')
+  .addField('Before', 'Hard to use APIs', true)
+  .addField('Now', 'Clean and simple!', true)
+  .setColor('success') // or 'error', 'warning', 'info', 'discord'
+  .setThumbnail('https://example.com/image.png')
+  .setFooter('Made with ryuziii.js')
+  .setTimestamp();
+
+await client.sendMessage(channelId, { embeds: [embed] });
 ```
 
-### Advanced Example
+### Advanced Examples
 
-See [`examples/advanced-bot.js`](./examples/advanced-bot.js) for a modular bot with:
-- Event folders
-- Command folders
-- Slash command support
-- Sharding and voice ready
+See our example files for complete implementations:
+- [`examples/basic.js`](./examples/basic.js) - Simple bot with modern features
+- [`examples/advanced-bot.js`](./examples/advanced-bot.js) - Full-featured bot
+- [`examples/music-bot.js`](./examples/music-bot.js) - Voice connections & music
+- [`examples/sharding.js`](./examples/sharding.js) - Sharding for large bots
 
 ---
 
